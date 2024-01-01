@@ -32,7 +32,10 @@ $filepath = shift @ARGV;
 #qw(⬚ ▢ ▤ ▣ ⬛)
 
 my @unicode = qw(⬚ ▢ ▤ ▣ ⬛);
-my @colors = ( 237, 139, 40, 190, 1 );
+# my @colors = ( "5;237", "5;139", "5;40", "5;190", "5;1" );
+my @colors = ( "2;31;31;31", "2;31;63;31", "2;63;127;0", "2;195;195;0", "2;255;127;0" );
+# my @patterns = ( " ", "⠢", "⡤", "⡶", "⡿" );
+my @patterns = ( " ", "█", "█", "█", "█" );
 my @ascii = ( " ", ".", "o", "O", "0" );
 my @months = qw (Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
 
@@ -318,7 +321,8 @@ sub print_block {
     $_
       = ( $format eq "ascii" ) ? "${ascii[$index]} "
       : ( $format eq "unicode" ) ? "${unicode[$index]} "
-      :                            "\e[38;5;$colors[$index]m\x{25fc} \e[0m";
+      # :                            "\e[38;$colors[$index]m\x{25fc} \e[0m";
+      :                            "\e[38;$colors[$index]m$patterns[$index] \e[0m";
     print;
 }
 
